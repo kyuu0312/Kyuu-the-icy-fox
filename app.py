@@ -1,4 +1,5 @@
 # app.py
+import matplotlib.pyplot as plt
 import streamlit as st
 from agent_logic import run_agent
 
@@ -18,7 +19,24 @@ with col2:
             with st.spinner("Agent is thinking..."):
                 try:
                     result = run_agent(user_input)
-                    st.success("✅ Task completed!")
-                    st.write(result)
+st.success("✅ Task completed!")
+
+if isinstance(result, dict):
+    visualize_calendar(result)
+else:
+    st.write(result)
                 except Exception as e:
                     st.error(f"Error: {e}")
+def visualize_calendar(data: dict):
+    st.markdown("### 🗓️ Visual Marketing Calendar")
+    days = list(data.keys())
+    tasks = list(data.values())
+
+    fig, ax = plt.subplots(figsize=(10, 0.5 * len(tasks)))
+    ax.barh(days, range(len(tasks)), color='skyblue')
+    ax.set_yticks(range(len(tasks)))
+    ax.set_yticklabels(tasks)
+    ax.invert_yaxis()
+    ax.set_xlabel("Timeline")
+    ax.set_title("Marketing Calendar")
+    st.pyplot(fig)
