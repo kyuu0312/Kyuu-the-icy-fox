@@ -17,16 +17,16 @@ with col2:
             st.error("Please enter a command to run the agent.")
         else:
             with st.spinner("Agent is thinking..."):
-                try:
-                    result = run_agent(user_input)
-st.success("✅ Task completed!")
+    try:
+        result = run_agent(user_input)
+        st.success("✅ Task completed!")
+        if isinstance(result, dict):
+            visualize_calendar(result)
+        else:
+            st.write(result)
 
-if isinstance(result, dict):
-    visualize_calendar(result)
-else:
-    st.write(result)
-                except Exception as e:
-                    st.error(f"Error: {e}")
+    except Exception as e:
+        st.error(f"Error: {e}")
 def visualize_calendar(data: dict):
     st.markdown("### 🗓️ Visual Marketing Calendar")
     days = list(data.keys())
