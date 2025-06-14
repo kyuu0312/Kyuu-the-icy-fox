@@ -2,6 +2,7 @@ streamlit
 openai
 langchain
 langchain-community
+langchain-experimental
 chromadb
-python-dotenv
 google-search-results
+python-dotenv
