@@ -20,6 +20,7 @@ with col2:
     try:
         result = run_agent(user_input)
         st.success("✅ Task completed!")
+
         if isinstance(result, dict):
             visualize_calendar(result)
         else:
