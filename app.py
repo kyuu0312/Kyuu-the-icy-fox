@@ -12,7 +12,7 @@ with col1:
     user_input = st.text_area("Enter your command here:")
 
 with col2:
-    if st.button("🧠 Run Agent"):
+    if st.button("Run Agent"):
         if not user_input.strip():
             st.error("Please enter a command to run.")
         else:
